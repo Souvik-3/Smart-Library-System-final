@@ -1,0 +1,37 @@
+[ {
+  "id" : "B001",
+  "title" : "Introduction to Java",
+  "author" : "Daniel Liang",
+  "status" : "Issued",
+  "issuedTo" : "48"
+}, {
+  "id" : "B002",
+  "title" : "Effective Java",
+  "author" : "Joshua Bloch",
+  "status" : "Issued",
+  "issuedTo" : "48"
+}, {
+  "id" : "B003",
+  "title" : "Clean Code",
+  "author" : "Robert C. Martin",
+  "status" : "Issued",
+  "issuedTo" : "S101"
+}, {
+  "id" : "B004",
+  "title" : "Intro To CP",
+  "author" : "KK3",
+  "status" : "Issued",
+  "issuedTo" : "48"
+}, {
+  "id" : "B002",
+  "title" : "Effective Java",
+  "author" : "Joshua Bloch",
+  "status" : "Available",
+  "issuedTo" : ""
+}, {
+  "id" : "B005",
+  "title" : "Competitive Programming",
+  "author" : "tourist",
+  "status" : "Available",
+  "issuedTo" : ""
+} ]

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartlibrary.controller.SignupController" style="-fx-background-color: #ecf0f1;">
+   <children>
+      <VBox alignment="CENTER" maxWidth="400" maxHeight="350" spacing="15.0" style="-fx-padding: 30; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);">
+         <children>
+            <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Create Account" />
+            <TextField fx:id="nameField" promptText="Full Name" style="-fx-font-size: 14px; -fx-padding: 10;" />
+            <TextField fx:id="idField" promptText="User ID (e.g. S103)" style="-fx-font-size: 14px; -fx-padding: 10;" />
+            <PasswordField fx:id="passwordField" promptText="Password" style="-fx-font-size: 14px; -fx-padding: 10;" />
+            
+            <HBox alignment="CENTER" spacing="15">
+                <fx:define><ToggleGroup fx:id="signupRoleGroup"/></fx:define>
+                <RadioButton fx:id="radioStudent" text="Student" toggleGroup="$signupRoleGroup" selected="true" style="-fx-font-size: 14px; -fx-text-fill: #2c3e50; -fx-font-weight: bold;" />
+                <RadioButton fx:id="radioLibrarian" text="Librarian" toggleGroup="$signupRoleGroup" style="-fx-font-size: 14px; -fx-text-fill: #2c3e50; -fx-font-weight: bold;" />
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button mnemonicParsing="false" onAction="#handleSignupAction" text="Sign Up" style="-fx-font-size: 14px; -fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-cursor: hand;" />
+                <Button mnemonicParsing="false" onAction="#handleBackAction" text="Back to Login" style="-fx-font-size: 14px; -fx-background-color: #95a5a6; -fx-text-fill: white; -fx-padding: 10 20; -fx-cursor: hand;" />
+            </HBox>
+            
+            <Label fx:id="errorLabel" textFill="#e74c3c" style="-fx-font-size: 13px;" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

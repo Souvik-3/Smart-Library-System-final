@@ -1,0 +1,41 @@
+[ {
+  "id" : "S101",
+  "name" : "Alice Smith",
+  "password" : "pass",
+  "role" : "STUDENT"
+}, {
+  "id" : "S102",
+  "name" : "Bob Jones",
+  "password" : "pass",
+  "role" : "STUDENT"
+}, {
+  "id" : "L101",
+  "name" : "Admin Librarian",
+  "password" : "admin",
+  "role" : "LIBRARIAN"
+}, {
+  "id" : "1234",
+  "name" : "omi",
+  "password" : "1234",
+  "role" : "STUDENT"
+}, {
+  "id" : "1212",
+  "name" : "Rohan",
+  "password" : "1212",
+  "role" : "STUDENT"
+}, {
+  "id" : "48",
+  "name" : "Souvik",
+  "password" : "48",
+  "role" : "STUDENT"
+}, {
+  "id" : "21",
+  "name" : "kundu",
+  "password" : "21",
+  "role" : "LIBRARIAN"
+}, {
+  "id" : "51",
+  "name" : "Jakaria",
+  "password" : "51",
+  "role" : "STUDENT"
+} ]

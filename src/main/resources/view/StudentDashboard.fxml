@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartlibrary.controller.StudentController">
+    <TabPane AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="About Catalog">
+            <ScrollPane fitToWidth="true" style="-fx-padding: 20;">
+                <Label wrapText="true" style="-fx-font-size: 15px; -fx-line-spacing: 5px; -fx-padding: 10;" text="The Smart Library Management System is a JavaFX-based desktop application designed to simplify and manage the daily activities of a library. The system provides separate functionalities for Librarians and Students/Members, ensuring that each user can perform only the tasks relevant to their role.&#10;&#10;The librarian can manage books and library members, including adding, editing, searching, and removing book records, registering members, and managing book availability. The librarian can also issue books to members and process returned books. The system automatically updates the status of a book from Available to Issued and vice versa.&#10;&#10;Students or members can log into the system to view their profile, search for available books, view book details, and check their currently borrowed books and borrowing history. They cannot directly add books or perform issue/return operations.&#10;&#10;The application will provide a user-friendly graphical interface using JavaFX components such as TextField, PasswordField, ComboBox, ChoiceBox, RadioButton, CheckBox, DatePicker, TextArea, ImageView, TableView, ListView, Alert, MenuBar, and FileChooser. The project will also demonstrate event handling, scene switching, FXML-based interface design, and structured application development using the MVC approach.&#10;&#10;Overall, the system aims to provide a simple, realistic, and efficient solution for managing library resources and member activities through a modern graphical user interface." />
+            </ScrollPane>
+        </Tab>
+        <Tab text="My Dashboard">
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="welcomeLabel" text="Student Dashboard" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Logout" onAction="#handleLogout" />
+                </HBox>
+                
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Available Books" style="-fx-font-weight: bold;" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Borrow Selected Book" onAction="#handleBorrowBook" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;" />
+                </HBox>
+                <HBox spacing="10">
+                    <TextField fx:id="searchField" promptText="Search by title or author" prefWidth="300"/>
+                    <Button text="Search" onAction="#handleSearch"/>
+                </HBox>
+                <TableView fx:id="availableTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colAvailId" text="ID" prefWidth="100" />
+                        <TableColumn fx:id="colAvailTitle" text="Title" prefWidth="250" />
+                        <TableColumn fx:id="colAvailAuthor" text="Author" prefWidth="200" />
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="My Borrowed Books" style="-fx-font-weight: bold;" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Return Selected Book" onAction="#handleReturnBook" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;" />
+                </HBox>
+                <TableView fx:id="borrowedTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colBorrId" text="ID" prefWidth="100" />
+                        <TableColumn fx:id="colBorrTitle" text="Title" prefWidth="250" />
+                        <TableColumn fx:id="colBorrAuthor" text="Author" prefWidth="200" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+    </TabPane>
+</AnchorPane>

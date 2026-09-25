@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartlibrary.controller.LabComponentsDemoController">
+    <ScrollPane fitToWidth="true" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+        <VBox spacing="15" style="-fx-padding: 20;">
+            <Label text="Lab Components Demo" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+            <HBox spacing="20">
+                <!-- Left Column -->
+                <VBox spacing="10" prefWidth="350">
+                    <Label text="ListView &amp; Label" style="-fx-font-weight: bold;"/>
+                    <ListView fx:id="fruitListView" prefHeight="100"/>
+                    <Label fx:id="fruitLabel" text="Selected Fruit:" />
+
+                    <Separator />
+                    <Label text="TreeView &amp; Label" style="-fx-font-weight: bold;"/>
+                    <TreeView fx:id="categoryTreeView" prefHeight="100"/>
+                    <Label fx:id="treeLabel" text="Selected Node:" />
+
+                    <Separator />
+                    <Label text="ProgressBar &amp; TextField" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="5">
+                        <TextField fx:id="progressInput" promptText="Target Number" prefWidth="100"/>
+                        <Button text="Accumulate" onAction="#handleAccumulate" />
+                    </HBox>
+                    <ProgressBar fx:id="progressBar" prefWidth="300" progress="0.0"/>
+                    <Label fx:id="progressLabel" text="Sum: 0" />
+
+                    <Separator />
+                    <Label text="Slider" style="-fx-font-weight: bold;"/>
+                    <Slider fx:id="fontSlider" min="10" max="36" value="12" />
+                    <Label fx:id="sliderLabel" text="Dynamic Font Size Text" />
+
+                    <Separator />
+                    <Label text="Spinner" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="5">
+                        <Spinner fx:id="quantitySpinner" prefWidth="100"/>
+                        <Button text="Show" onAction="#handleSpinnerShow" />
+                    </HBox>
+                    <Label fx:id="spinnerLabel" text="Quantity:" />
+                </VBox>
+
+                <!-- Right Column -->
+                <VBox spacing="10" prefWidth="350">
+                    <Label text="Alert Dialogs" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="10">
+                        <Button text="Info" onAction="#handleShowInfo"/>
+                        <Button text="Warning" onAction="#handleShowWarning"/>
+                        <Button text="Error" onAction="#handleShowError"/>
+                    </HBox>
+
+                    <Separator />
+                    <Label text="TextArea" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="noteArea" prefHeight="60" promptText="Write a short note..." />
+                    <Button text="Clear" onAction="#handleClearNote"/>
+
+                    <Separator />
+                    <Label text="PasswordField" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="5">
+                        <StackPane>
+                            <PasswordField fx:id="pwdField" promptText="Password" />
+                            <TextField fx:id="pwdVisibleField" promptText="Password" />
+                        </StackPane>
+                        <Button fx:id="togglePwdBtn" text="Show" onAction="#handleTogglePassword"/>
+                    </HBox>
+
+                    <Separator />
+                    <Label text="FileChooser &amp; ImageView" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="10">
+                        <Button text="Browse" onAction="#handleBrowseImage"/>
+                        <Button text="Change Image (Resource)" onAction="#handleChangeImageFromResource"/>
+                    </HBox>
+                    <ImageView fx:id="imageView" fitWidth="150" fitHeight="150" preserveRatio="true"/>
+
+                    <Separator />
+                    <Label text="RadioButtons (Gender &amp; Level)" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="10">
+                        <fx:define><ToggleGroup fx:id="genderGroup"/></fx:define>
+                        <RadioButton text="Male" toggleGroup="$genderGroup" onAction="#handleGenderSelection"/>
+                        <RadioButton text="Female" toggleGroup="$genderGroup" onAction="#handleGenderSelection"/>
+                    </HBox>
+                    <Label fx:id="genderLabel" text="Gender:" />
+                    
+                    <HBox spacing="10">
+                        <fx:define><ToggleGroup fx:id="levelGroup"/></fx:define>
+                        <RadioButton text="Beginner" toggleGroup="$levelGroup"/>
+                        <RadioButton text="Intermediate" toggleGroup="$levelGroup"/>
+                        <RadioButton text="Expert" toggleGroup="$levelGroup"/>
+                    </HBox>
+
+                    <Separator />
+                    <Label text="CheckBoxes (Hobbies)" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="10">
+                        <CheckBox fx:id="chkReading" text="Reading" />
+                        <CheckBox fx:id="chkGaming" text="Gaming" />
+                        <CheckBox fx:id="chkTraveling" text="Traveling" />
+                        <Button text="Submit" onAction="#handleHobbySubmit"/>
+                    </HBox>
+                    <Label fx:id="hobbyLabel" text="Hobbies:" />
+
+                    <Separator />
+                    <HBox spacing="20">
+                        <VBox spacing="5">
+                            <Label text="ChoiceBox (BG Color)" style="-fx-font-weight: bold;"/>
+                            <ChoiceBox fx:id="colorChoiceBox" />
+                        </VBox>
+                        <VBox spacing="5">
+                            <Label text="ComboBox (Country)" style="-fx-font-weight: bold;"/>
+                            <ComboBox fx:id="countryComboBox" />
+                        </VBox>
+                    </HBox>
+
+                    <Separator />
+                    <HBox spacing="20">
+                        <VBox spacing="5">
+                            <Label text="DatePicker" style="-fx-font-weight: bold;"/>
+                            <DatePicker fx:id="dobPicker" />
+                            <Label fx:id="dobLabel" text="DOB:" />
+                        </VBox>
+                        <VBox spacing="5">
+                            <Label text="ColorPicker" style="-fx-font-weight: bold;"/>
+                            <ColorPicker fx:id="colorPicker" />
+                            <Label fx:id="coloredLabel" text="Color me!" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</AnchorPane>
