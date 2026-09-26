@@ -19,6 +19,8 @@
                 <HBox spacing="10">
                     <TextField fx:id="searchField" promptText="Search books by title or author" prefWidth="300"/>
                     <Button text="Search" onAction="#handleSearch"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Fetch Online Books (API)" onAction="#handleFetchOnlineBooks" style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-cursor: hand;" />
                 </HBox>
                 <TableView fx:id="bookTable" VBox.vgrow="ALWAYS">
                     <columns>

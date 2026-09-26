@@ -10,7 +10,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.application.Platform;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -136,6 +143,55 @@ public class LibrarianController extends BaseController implements Initializable
         } else {
             showAlert("Error", "ID and Title are required.", Alert.AlertType.ERROR);
         }
+    }
+
+    @FXML
+    private void handleFetchOnlineBooks(ActionEvent event) {
+        showAlert("Fetching", "Fetching books from OpenLibrary API in the background...", Alert.AlertType.INFORMATION);
+        
+        LibraryManager.getInstance().getExecutorService().submit(() -> {
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("https://openlibrary.org/search.json?q=java&limit=5"))
+                        .build();
+
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode rootNode = mapper.readTree(response.body());
+                JsonNode docs = rootNode.path("docs");
+                
+                int fetchedCount = 0;
+                if (docs.isArray()) {
+                    for (JsonNode doc : docs) {
+                        String title = doc.path("title").asText("Unknown Title");
+                        String author = "Unknown Author";
+                        if (doc.path("author_name").isArray() && doc.path("author_name").size() > 0) {
+                            author = doc.path("author_name").get(0).asText();
+                        }
+                        String id = "API-" + System.currentTimeMillis() + "-" + fetchedCount;
+                        
+                        Book newBook = new Book(id, title, author, "Available", "");
+                        LibraryManager.getInstance().addBook(newBook);
+                        fetchedCount++;
+                        Thread.sleep(10);
+                    }
+                }
+                
+                final int finalCount = fetchedCount;
+                Platform.runLater(() -> {
+                    refreshTable();
+                    showAlert("Success", "Successfully fetched and saved " + finalCount + " books from OpenLibrary API into SQLite!", Alert.AlertType.INFORMATION);
+                });
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                Platform.runLater(() -> {
+                    showAlert("Error", "Failed to fetch online books: " + e.getMessage(), Alert.AlertType.ERROR);
+                });
+            }
+        });
     }
 
     @FXML

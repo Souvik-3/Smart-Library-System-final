@@ -1,52 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartlibrary.controller.StudentController">
-    <TabPane AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab text="About Catalog">
-            <ScrollPane fitToWidth="true" style="-fx-padding: 20;">
-                <Label wrapText="true" style="-fx-font-size: 15px; -fx-line-spacing: 5px; -fx-padding: 10;" text="The Smart Library Management System is a JavaFX-based desktop application designed to simplify and manage the daily activities of a library. The system provides separate functionalities for Librarians and Students/Members, ensuring that each user can perform only the tasks relevant to their role.&#10;&#10;The librarian can manage books and library members, including adding, editing, searching, and removing book records, registering members, and managing book availability. The librarian can also issue books to members and process returned books. The system automatically updates the status of a book from Available to Issued and vice versa.&#10;&#10;Students or members can log into the system to view their profile, search for available books, view book details, and check their currently borrowed books and borrowing history. They cannot directly add books or perform issue/return operations.&#10;&#10;The application will provide a user-friendly graphical interface using JavaFX components such as TextField, PasswordField, ComboBox, ChoiceBox, RadioButton, CheckBox, DatePicker, TextArea, ImageView, TableView, ListView, Alert, MenuBar, and FileChooser. The project will also demonstrate event handling, scene switching, FXML-based interface design, and structured application development using the MVC approach.&#10;&#10;Overall, the system aims to provide a simple, realistic, and efficient solution for managing library resources and member activities through a modern graphical user interface." />
-            </ScrollPane>
-        </Tab>
-        <Tab text="My Dashboard">
-            <VBox spacing="10" style="-fx-padding: 10;">
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label fx:id="welcomeLabel" text="Student Dashboard" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button text="Logout" onAction="#handleLogout" />
-                </HBox>
-                
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Available Books" style="-fx-font-weight: bold;" />
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button text="Borrow Selected Book" onAction="#handleBorrowBook" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;" />
-                </HBox>
-                <HBox spacing="10">
-                    <TextField fx:id="searchField" promptText="Search by title or author" prefWidth="300"/>
-                    <Button text="Search" onAction="#handleSearch"/>
-                </HBox>
-                <TableView fx:id="availableTable" VBox.vgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="colAvailId" text="ID" prefWidth="100" />
-                        <TableColumn fx:id="colAvailTitle" text="Title" prefWidth="250" />
-                        <TableColumn fx:id="colAvailAuthor" text="Author" prefWidth="200" />
-                    </columns>
-                </TableView>
-
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="My Borrowed Books" style="-fx-font-weight: bold;" />
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button text="Return Selected Book" onAction="#handleReturnBook" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;" />
-                </HBox>
-                <TableView fx:id="borrowedTable" VBox.vgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="colBorrId" text="ID" prefWidth="100" />
-                        <TableColumn fx:id="colBorrTitle" text="Title" prefWidth="250" />
-                        <TableColumn fx:id="colBorrAuthor" text="Author" prefWidth="200" />
-                    </columns>
-                </TableView>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartlibrary.controller.StudentController" prefWidth="1200" prefHeight="700">
+    
+    <!-- Top Header Section -->
+    <top>
+        <VBox>
+            <!-- Green Gradient Banner -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-background-color: linear-gradient(to bottom, #c5e1a5, #7cb342); -fx-padding: 15;">
+                <Label text="CENTRAL LIBRARY" style="-fx-font-size: 28px; -fx-text-fill: #1a4314; -fx-font-weight: bold;" />
+                <Label text="Welcome to Online Public Access Catalogue (OPAC)" style="-fx-font-size: 16px; -fx-text-fill: #1a4314; -fx-font-style: italic;" />
+                <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: transparent; -fx-text-fill: #1a4314; -fx-underline: true; -fx-cursor: hand;" translateY="-40" translateX="550" />
             </VBox>
-        </Tab>
-    </TabPane>
-</AnchorPane>
+            
+            <!-- Search Bar Area -->
+            <HBox spacing="5" alignment="CENTER_LEFT" style="-fx-background-color: #f5f5f5; -fx-padding: 10; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                <ChoiceBox fx:id="searchChoice" value="Library catalog" prefWidth="130" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-radius: 3;" />
+                <TextField fx:id="searchField" promptText="Search the catalog by keyword" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-radius: 3; -fx-padding: 5;" />
+                <Button text="Q" onAction="#handleSearch" style="-fx-background-color: #558b2f; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+            </HBox>
+            
+            <!-- Breadcrumbs / Links -->
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 5 15; -fx-background-color: white;">
+                <Label text="Advanced search | Authority search | Tag cloud | Library" style="-fx-text-fill: #2980b9; -fx-cursor: hand;" />
+            </HBox>
+            <HBox spacing="5" alignment="CENTER_LEFT" style="-fx-padding: 5 15; -fx-background-color: #f9f9f9; -fx-border-color: #eee; -fx-border-width: 1 0;">
+                <Label text="Home" style="-fx-text-fill: #2980b9;" />
+                <Label text="›" />
+                <Label fx:id="breadcrumbNameLabel" text="USER" style="-fx-text-fill: #2980b9;" />
+                <Label text="›" />
+                <Label text="Your summary" />
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="2" style="-fx-padding: 15; -fx-background-color: white; -fx-border-color: #eee; -fx-border-width: 0 1 0 0;" prefWidth="220">
+            <Button text="Summary" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: white; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Charges" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Personal details" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Tags" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Change password" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Checkout history" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Purchase suggestions" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Messaging" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Lists" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+        </VBox>
+    </left>
+    
+    <!-- Center Main Content -->
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: white;">
+            
+            <Label text="Your summary" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+            
+            <VBox spacing="2">
+                <Label fx:id="welcomeLabel" text="Hello, USER" style="-fx-font-weight: bold; -fx-text-fill: #333;" />
+                <Label text="Click here if you're not this user" style="-fx-text-fill: #2980b9; -fx-cursor: hand;" onMouseClicked="#handleLogout" />
+            </VBox>
+            
+            <TabPane fx:id="mainTabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: white; -fx-border-color: #ddd;">
+                
+                <!-- Checked Out Tab -->
+                <Tab text="Checked out">
+                    <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: white;">
+                        
+                        <!-- Top Toolbar -->
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="Search" style="-fx-text-fill: #666;" />
+                            <TextField prefWidth="150" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-radius: 3;" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button text="✓ Renew selected" onAction="#handleReturnBook" style="-fx-background-color: transparent; -fx-text-fill: #2980b9; -fx-cursor: hand;" />
+                            <Button text="✓ Renew all" onAction="#handleReturnBook" style="-fx-background-color: transparent; -fx-text-fill: #2980b9; -fx-cursor: hand;" />
+                        </HBox>
+                        
+                        <Label fx:id="checkedOutCountLabel" text="X Item(s) checked out" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        
+                        <!-- Borrowed Table (Mimicking OPAC format) -->
+                        <TableView fx:id="borrowedTable" VBox.vgrow="ALWAYS" style="-fx-border-color: #eee;">
+                            <columns>
+                                <TableColumn fx:id="colBorrTitle" text="Title" prefWidth="300" />
+                                <TableColumn fx:id="colBorrAuthor" text="Author" prefWidth="180" />
+                                <TableColumn fx:id="colBorrDue" text="Due" prefWidth="100" />
+                                <TableColumn fx:id="colBorrCall" text="Call number" prefWidth="100" />
+                                <TableColumn fx:id="colBorrRenew" text="Renew" prefWidth="180" />
+                                <TableColumn fx:id="colBorrFines" text="Fines" prefWidth="60" />
+                            </columns>
+                        </TableView>
+                        
+                        <!-- Bottom Toolbar -->
+                        <HBox spacing="5" alignment="CENTER_LEFT">
+                            <Button text="Renew selected" onAction="#handleReturnBook" style="-fx-background-color: #558b2f; -fx-text-fill: white; -fx-cursor: hand;" />
+                            <Button text="Renew all" onAction="#handleReturnBook" style="-fx-background-color: #558b2f; -fx-text-fill: white; -fx-cursor: hand;" />
+                        </HBox>
+                    </VBox>
+                </Tab>
+
+                <!-- Search Results / Available Books Tab -->
+                <Tab text="Available Books (Search)">
+                    <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: white;">
+                        <Label text="Search Results" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <TableView fx:id="availableTable" VBox.vgrow="ALWAYS" style="-fx-border-color: #eee;">
+                            <columns>
+                                <TableColumn fx:id="colAvailTitle" text="Title" prefWidth="350" />
+                                <TableColumn fx:id="colAvailAuthor" text="Author" prefWidth="250" />
+                                <TableColumn fx:id="colAvailStatus" text="Status" prefWidth="150" />
+                            </columns>
+                        </TableView>
+                        <HBox spacing="5" alignment="CENTER_LEFT">
+                            <Button text="Borrow Selected" onAction="#handleBorrowBook" style="-fx-background-color: #558b2f; -fx-text-fill: white; -fx-cursor: hand;" />
+                        </HBox>
+                    </VBox>
+                </Tab>
+
+            </TabPane>
+        </VBox>
+    </center>
+    
+</BorderPane>
