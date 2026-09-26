@@ -40,15 +40,15 @@
     <!-- Left Sidebar -->
     <left>
         <VBox spacing="2" style="-fx-padding: 15; -fx-background-color: white; -fx-border-color: #eee; -fx-border-width: 0 1 0 0;" prefWidth="220">
-            <Button text="Summary" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: white; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Charges" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Personal details" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Tags" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Change password" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Checkout history" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Purchase suggestions" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Messaging" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
-            <Button text="Lists" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Summary" onAction="#handleSidebarClick" userData="Summary" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: white; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Charges" onAction="#handleSidebarClick" userData="Charges" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Personal details" onAction="#handleSidebarClick" userData="Personal details" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Tags" onAction="#handleSidebarClick" userData="Tags" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Change password" onAction="#handleSidebarClick" userData="Change password" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Checkout history" onAction="#handleSidebarClick" userData="Checkout history" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Purchase suggestions" onAction="#handleSidebarClick" userData="Purchase suggestions" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Messaging" onAction="#handleSidebarClick" userData="Messaging" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
+            <Button text="Lists" onAction="#handleSidebarClick" userData="Lists" maxWidth="Infinity" alignment="BASELINE_LEFT" style="-fx-background-color: #f9f9f9; -fx-text-fill: #2980b9; -fx-border-color: #eee; -fx-padding: 10;" />
         </VBox>
     </left>
     
@@ -66,7 +66,7 @@
             <TabPane fx:id="mainTabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: white; -fx-border-color: #ddd;">
                 
                 <!-- Checked Out Tab -->
-                <Tab text="Checked out">
+                <Tab fx:id="checkedOutTab" text="Checked out">
                     <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: white;">
                         
                         <!-- Top Toolbar -->
@@ -101,7 +101,7 @@
                 </Tab>
 
                 <!-- Search Results / Available Books Tab -->
-                <Tab text="Available Books (Search)">
+                <Tab fx:id="availableBooksTab" text="Available Books (Search)">
                     <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: white;">
                         <Label text="Search Results" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
                         <TableView fx:id="availableTable" VBox.vgrow="ALWAYS" style="-fx-border-color: #eee;">
