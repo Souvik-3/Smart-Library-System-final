@@ -22,9 +22,3 @@ Welcome to the **Smart Library System**! This project is a modern, intuitive lib
 Ensure you have the following installed on your local machine:
 - [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads/) (Version 11 or higher recommended)
 - [Apache Maven](https://maven.apache.org/download.cgi)
-
-### Setup and Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/Souvik-3/Smart-Library-System-final.git](https://github.com/Souvik-3/Smart-Library-System-final.git)
